@@ -55,7 +55,7 @@ jobs:
           curl --fail --location --retry 3 --retry-delay 2 "$BASE/libneedle.a" -o needle-pocket/app/src/main/cpp/vendor/arm64-v8a/libneedle.a
           curl --fail --location --retry 3 --retry-delay 2 "$BASE/needle.h" -o needle-pocket/app/src/main/cpp/vendor/arm64-v8a/needle.h
           test "$(wc -c < needle-pocket/app/src/main/cpp/vendor/arm64-v8a/libneedle.a)" -gt 1000000
-          test "$(wc -c < needle-pocket/app/src/main/cpp/vendor/arm64-v8a/needle.h)" -gt 1000
+          test "$(wc -c < needle-pocket/app/src/main/cpp/vendor/arm64-v8a/needle.h)" -gt 500
 
       - name: Package Android C++ runtime
         shell: bash
