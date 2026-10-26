@@ -66,12 +66,12 @@ Java_com_yukesh_needlepocket_NeedleEngine_nativeComplete(JNIEnv* env, jclass, js
     std::lock_guard<std::mutex> lock(engineMutex);
     if (!initialized) return toJava(env, "__NEEDLE_ERROR__:Engine is not initialized.");
     const std::string prompt = fromJava(env, promptValue);
-    std::vector<char> output(256 * 1024, '\\0');
+    std::vector<char> output(256 * 1024, '\0');
     const int rc = needle_complete(prompt.c_str(), static_cast<int>(maxTokens), output.data(), static_cast<int>(output.size()));
     if (rc < 0) {
         return toJava(env, "__NEEDLE_ERROR__:Needle completion failed (native error " + std::to_string(rc) + ").");
     }
-    if (output[0] == '\\0') return toJava(env, "__NEEDLE_ERROR__:Needle returned an empty response.");
+    if (output[0] == '\0') return toJava(env, "__NEEDLE_ERROR__:Needle returned an empty response.");
     return toJava(env, std::string(output.data()));
 }
 
